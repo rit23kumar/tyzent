@@ -125,6 +125,11 @@ header .navbar a:hover{
 .navbar-light{
     background-color: lightgrey;
 }
+.nav-item a{
+    white-space: nowrap;
+}
+
+
 
 
 /*** 
@@ -210,6 +215,7 @@ header .navbar a:hover{
     padding: 0 16px;
     text-decoration: none;
     display: block;
+    
   }
   
   /* Change color of dropdown links on hover */
@@ -218,10 +224,7 @@ header .navbar a:hover{
       margin: 0%;
     }
   
-  /* Show the dropdown menu on hover */
-  /* .dropdown:hover .dropdown-menu { */
-      /* display: inline; */
-    /* } */
+  
   
 
   .margin{
