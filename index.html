@@ -295,7 +295,7 @@
                         <div class="form-group">
                             <textarea id="form_message" class="form-control textarea required" placeholder="Your Text"></textarea>
                         </div>
-						 <span id="form_response" class="form-group" style="color:green; font-size: 13px; font-weight: 600;">
+						 <span id="form_response" class="form-group" style="font-size: 13px; font-weight: 600;">
                             
                         </span>
                         <div class="form-group form-bottom">
@@ -369,16 +369,21 @@ Team Tyzent
 			 if (this.readyState == 4 && this.status == 200) {
 				 //alert(this.responseText);
 				 document.getElementById("form_response").innerHTML = "Message Sent";
+				 document.getElementById("form_response").style.color = "green";
+				 document.getElementById("form_name").value = "";
+				document.getElementById("form_phone").value = "";
+				document.getElementById("form_message").value = "";
+			 }
+			 else if(this.readyState == 4)
+			 {
+				document.getElementById("form_response").innerHTML = "Message Sent Failed"
+				document.getElementById("form_response").style.color = "red";
 			 }
 		};
 		
 		xhttp.open("POST", "https://maths.host/api/util/email/send-mail", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(JSON.stringify(data1));
-		document.getElementById("form_name").value = "";
-		document.getElementById("form_phone").value = "";
-		document.getElementById("form_message").value = "";
-		
+		xhttp.send(JSON.stringify(data1));	
 	}
 	</script>
 
