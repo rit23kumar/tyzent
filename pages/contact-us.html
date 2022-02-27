@@ -99,16 +99,18 @@
       <div class="row">
           <div class="col-lg-6 col-md-12 col-xs-12">
               <div class="left-side">
-                  <form id="contact_form" name="contact_form" action="sendmail.php" method="post">
+                  <form id="contact_form" name="contact_form" onsubmit="sendMail();return false" method="post">
                       <div class="form-group">
-                          <input type="text" name="form_name" class="form-control" value="" placeholder="Your Name" required="">
+                          <input type="text" id="form_name" class="form-control" value="" placeholder="Your Name" required="">
                       </div>
                       <div class="form-group">
-                          <input type="text" name="form_phone" class="form-control" value="" placeholder="Phone" required="">
+                          <input type="text" id="form_phone" class="form-control" value="" placeholder="Phone" required="">
                       </div>
                       <div class="form-group">
-                          <textarea name="form_message" class="form-control textarea required" placeholder="Your Text"></textarea>
+                          <textarea id="form_message" class="form-control textarea required" placeholder="Your Text"></textarea>
                       </div>
+					  <span id="form_response" class="form-group" style="font-size: 13px; font-weight: 600;">
+                      </span>
                       <div class="form-group form-bottom">
                           <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
                           <button style="background-color: rgb(10, 10, 92); color: white; font-size: 16px; padding: 7px 10px 7px 10px;" type="submit" data-loading-text="Please wait...">send message</button>
@@ -168,6 +170,54 @@
     <!--custom js file link-->
     <script src="../script.js"></script>
 
+<script>
+	
+	function sendMail() {
+	document.getElementById("form_response").innerHTML = "Sending...";
+	let message = `Hi Admin,
+
+You got a message from Tyzent contact field.
+
+Sender Name : `+document.getElementById("form_name").value+
+`
+Sender Email/Mobile No. : `+document.getElementById("form_phone").value+
+`
+Message is : `+document.getElementById("form_message").value+
+`
+
+Regards:
+Team Tyzent
+`;
+		let data1 = {
+		"from":"Tyzent",
+        "sendTo":"info@tyzent.com",
+		"subject":"Message from Tyzent website",//create body Email thisForm["name"].value  thisForm["name"].value
+		"messageBody":message,
+		"carbonCopy":"NA"
+		};
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			 if (this.readyState == 4 && this.status == 200) {
+				 //alert(this.responseText);
+				 document.getElementById("form_response").innerHTML = "Message Sent";
+				 document.getElementById("form_response").style.color = "green";
+				 document.getElementById("form_name").value = "";
+				document.getElementById("form_phone").value = "";
+				document.getElementById("form_message").value = "";
+			 }
+			 else if(this.readyState == 4)
+			 {
+				document.getElementById("form_response").innerHTML = "Message Sent Failed"
+				document.getElementById("form_response").style.color = "red";
+			 }
+		};
+		
+		xhttp.open("POST", "https://maths.host/api/util/email/send-mail", true);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send(JSON.stringify(data1));	
+	}
+	</script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
