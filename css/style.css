@@ -13,8 +13,13 @@ body{
 
 	
 }
+main
+{
+	margin-top: 100px;
+	padding-top: 100px;
+}
 .nav-logo{
-    width: 10vh;
+    width: 80px;
 }
 .nav-link{
 	font-size: 17px !important;
@@ -59,9 +64,9 @@ body{
 	height: 555px;
 }
 .center{
-	width: 90%;
+	width: 100%;
 	position: absolute;
-	top: 300px;
+	top: 400px;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	text-align: center;
