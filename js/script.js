@@ -18,7 +18,7 @@ Team Tyzent
 `;
 		let data1 = {
 		"from":"Tyzent",
-        "sendTo":"info@tyzent.com",
+        "sendTo":"hr@tyzent.com",
 		"subject":"Message from Tyzent website",//create body Email thisForm["name"].value  thisForm["name"].value
 		"messageBody":message,
 		"carbonCopy":"NA"
